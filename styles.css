@@ -1,0 +1,22 @@
+/* Her har eg bare lagt til litt styling for å få alt til å stå på midten*/
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Og samme vidde på knappene */
+button {
+  width: 100px;
+}
+
+/* Og endre bakgrunnsfarge på noen elementer */
+#yourChoice {
+  background-color: blue;
+}
+
+p {
+  background-color: yellow !important ;
+}
