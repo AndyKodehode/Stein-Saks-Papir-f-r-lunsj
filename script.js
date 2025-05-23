@@ -2,6 +2,14 @@
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
+const displayCash = document.querySelector('#displayCash')
+const displayCost = document.querySelector('#displayCost')
+
+let losses = 0
+let wins = 0
+let draws = 0
+let cash = 1000
+let cost = 100
 
 // const navnForVariabel = document.querySelector('#IDNAVN')
 // sier at vi vil gi navnForVariabel en verdi som er document.querySelector('#IDNAVN')
@@ -14,6 +22,10 @@ const scissorsButton = document.querySelector('#scissors');
 const displayYourChoice = document.querySelector('#yourChoice');
 const displayComputerChoice = document.querySelector('#computerChoice');
 const displayResults = document.querySelector('#results');
+
+const displayWins = document.querySelector('#wins')
+const displayLosses = document.querySelector('#losses')
+const displayDraw = document.querySelector('#draws')
 
 // Vi lager en yourChoice variabel med bruk av let istedenfor const.
 // let brukes når du vil endre verdien inne i for eksempel yourChoice lengre nede i koden
@@ -59,8 +71,16 @@ function selectScissors() {
 
 scissorsButton.addEventListener('click', selectScissors);
 
+displayCost.innerHTML = 'cost:' + cost
+displayCash.innerHTML = 'cash:' + cash
+displayLosses.innerHTML = 'losses is:' + losses
+displayDraw.innerHTML = 'draw is:' + draws
+displayWins.innerHTML = 'wins is:'+ wins
+
 // Så skriver vi funksjonen som vi vil skal skje etter vi har trykke på en av knappene.
 function computerChoice() {
+  
+  
   // vi legger til at vi vil ha et tilfeldig tall mellom 0 og 2, inne i array valget som er choices[HER]
   // Math.random() skriver et tilfelig tall mellom 0 og 0.9999. Her ganger vi den versien med 3, som gjør at vi får et tall mellom 0 og 2.9999
   // Math.floor gjør at verdiene går ned til nærmeste hele tall. 0.2263 blir da 0, 2.951981 blir da 2 osv.
@@ -79,21 +99,48 @@ function computerChoice() {
   // her sjekker vi om verdien i yourChoice er akkurat det samme (===) som versiden til computerNumber.
   // Deretter gjør den det som kommer inne i {} rett etter ()
 
+  
+
   if (yourChoice === computerNumber) {
     displayResults.innerHTML = 'Its a draw!';
+    draws++
+    console.log(cash)
+    displayDraw.innerHTML = 'draw is:' + draws
+  
 
     // hvis den ikke stemmer, så går den videre til else if. Her sjekker den da forskjellge verdier, for å se om du vinner.
     // Her må begge tingene på hver side av && stemme, for at den skal gjøre det som er i {} rett etter
   } else if (computerNumber === 'rock' && yourChoice === 'paper') {
     displayResults.innerHTML = 'You win!';
+    wins++
+    cash += cost *2
+    
+    displayWins.innerHTML = 'wins is:'+ wins
+    displayCash.innerHTML = 'cash:' + cash
   } else if (computerNumber === 'paper' && yourChoice === 'scissors') {
     displayResults.innerHTML = 'You win!';
+    wins++
+    cash += cost *2
+    displayWins.innerHTML = 'wins is:'+ wins
+    displayCash.innerHTML = 'cash:' + cash
   } else if (computerNumber === 'scissors' && yourChoice === 'rock') {
     displayResults.innerHTML = 'You win!';
+    wins++
+    cash += cost *2
+    displayWins.innerHTML = 'wins is:'+ wins
+    displayCash.innerHTML = 'cash:' + cash
 
     // Hvis ingenting over stemmer, så går den automatisk ned til det som er i else statement, som er da at du taper runden.
   } else {
     displayResults.innerHTML = 'You lose!';
+    losses++
+    cash -= cost *2
+    displayLosses.innerHTML = 'losses is:' + losses
+    displayCash.innerHTML = 'cash:' + cash
+
+    if( cash <= 0){
+      displayCash.innerHTML = 'Game over motherfucker!!'
+    }
   }
 }
 
