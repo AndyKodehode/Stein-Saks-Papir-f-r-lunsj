@@ -89,6 +89,14 @@ function computerChoice() {
   displayYourChoice.innerHTML = yourChoice;
   displayComputerChoice.innerHTML = ''
 
+  displayCost.innerHTML = 'cost:' + cost
+  displayCash.innerHTML = 'cash:' + cash
+  displayResults.innerHTML = ''
+  displayLosses.innerHTML = 'losses is:' + losses
+  displayDraw.innerHTML = 'draw is:' + draws
+  displayWins.innerHTML = 'wins is:'+ wins
+  
+
 
   setTimeout(() => {
     let computerNumber = choices[Math.floor(Math.random() * 3)];
@@ -99,6 +107,8 @@ function computerChoice() {
   // her går den da først til if og sjekker om det som er inne i () stemmer
   // her sjekker vi om verdien i yourChoice er akkurat det samme (===) som versiden til computerNumber.
   // Deretter gjør den det som kommer inne i {} rett etter ()
+
+
 
    setTimeout(()=>{
     if (yourChoice === computerNumber) {
