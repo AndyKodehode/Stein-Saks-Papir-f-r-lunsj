@@ -71,11 +71,7 @@ function selectScissors() {
 
 scissorsButton.addEventListener('click', selectScissors);
 
-displayCost.innerHTML = 'cost:' + cost
-displayCash.innerHTML = 'cash:' + cash
-displayLosses.innerHTML = 'losses is:' + losses
-displayDraw.innerHTML = 'draw is:' + draws
-displayWins.innerHTML = 'wins is:'+ wins
+
 
 // Så skriver vi funksjonen som vi vil skal skje etter vi har trykke på en av knappene.
 function computerChoice() {
@@ -85,13 +81,18 @@ function computerChoice() {
   // Math.random() skriver et tilfelig tall mellom 0 og 0.9999. Her ganger vi den versien med 3, som gjør at vi får et tall mellom 0 og 2.9999
   // Math.floor gjør at verdiene går ned til nærmeste hele tall. 0.2263 blir da 0, 2.951981 blir da 2 osv.
   // Deretter lagrer vi den verdien i computerNumber
-  let computerNumber = choices[Math.floor(Math.random() * 3)];
+  
   // Nå har computerNumber en verdi av enten 'rock', 'paper' eller 'scissors'
 
   // Her velger vi da først den variabelen vi definerte lengre oppe, som for eksempel displayYourChoice element,
   // og vil at innholdet (.innerHTML) skal være verdien i yourChoice.
   displayYourChoice.innerHTML = yourChoice;
-  displayComputerChoice.innerHTML = computerNumber;
+  displayComputerChoice.innerHTML = ''
+
+
+  setTimeout(() => {
+    let computerNumber = choices[Math.floor(Math.random() * 3)];
+    displayComputerChoice.innerHTML = computerNumber;
   // Da endrer den det som er inne i p elementet på HTML siden, til det som er i yourChoice
 
   // til slutt sjekker vi hvem som vinner med bruk av en if else statement
@@ -99,49 +100,63 @@ function computerChoice() {
   // her sjekker vi om verdien i yourChoice er akkurat det samme (===) som versiden til computerNumber.
   // Deretter gjør den det som kommer inne i {} rett etter ()
 
-  
-
-  if (yourChoice === computerNumber) {
-    displayResults.innerHTML = 'Its a draw!';
-    draws++
-    console.log(cash)
-    displayDraw.innerHTML = 'draw is:' + draws
-  
-
-    // hvis den ikke stemmer, så går den videre til else if. Her sjekker den da forskjellge verdier, for å se om du vinner.
-    // Her må begge tingene på hver side av && stemme, for at den skal gjøre det som er i {} rett etter
-  } else if (computerNumber === 'rock' && yourChoice === 'paper') {
-    displayResults.innerHTML = 'You win!';
-    wins++
-    cash += cost *2
+   setTimeout(()=>{
+    if (yourChoice === computerNumber) {
     
-    displayWins.innerHTML = 'wins is:'+ wins
-    displayCash.innerHTML = 'cash:' + cash
-  } else if (computerNumber === 'paper' && yourChoice === 'scissors') {
-    displayResults.innerHTML = 'You win!';
-    wins++
-    cash += cost *2
-    displayWins.innerHTML = 'wins is:'+ wins
-    displayCash.innerHTML = 'cash:' + cash
-  } else if (computerNumber === 'scissors' && yourChoice === 'rock') {
-    displayResults.innerHTML = 'You win!';
-    wins++
-    cash += cost *2
-    displayWins.innerHTML = 'wins is:'+ wins
-    displayCash.innerHTML = 'cash:' + cash
-
-    // Hvis ingenting over stemmer, så går den automatisk ned til det som er i else statement, som er da at du taper runden.
-  } else {
-    displayResults.innerHTML = 'You lose!';
-    losses++
-    cash -= cost *2
-    displayLosses.innerHTML = 'losses is:' + losses
-    displayCash.innerHTML = 'cash:' + cash
-
-    if( cash <= 0){
-      displayCash.innerHTML = 'Game over motherfucker!!'
+      displayResults.innerHTML = 'Its a draw!';
+      draws++
+      console.log(cash)
+      displayDraw.innerHTML = 'draw is:' + draws
+    
+  
+      // hvis den ikke stemmer, så går den videre til else if. Her sjekker den da forskjellge verdier, for å se om du vinner.
+      // Her må begge tingene på hver side av && stemme, for at den skal gjøre det som er i {} rett etter
+    } else if (computerNumber === 'rock' && yourChoice === 'paper') {
+      displayResults.innerHTML = 'You win!';
+      wins++
+      cash += cost *2
+      
+      displayWins.innerHTML = 'wins is:'+ wins
+      displayCash.innerHTML = 'cash:' + cash
+    } else if (computerNumber === 'paper' && yourChoice === 'scissors') {
+      displayResults.innerHTML = 'You win!';
+      wins++
+      cash += cost *2
+      displayWins.innerHTML = 'wins is:'+ wins
+      displayCash.innerHTML = 'cash:' + cash
+    } else if (computerNumber === 'scissors' && yourChoice === 'rock') {
+      displayResults.innerHTML = 'You win!';
+      wins++
+      cash += cost *2
+      displayWins.innerHTML = 'wins is:'+ wins
+      displayCash.innerHTML = 'cash:' + cash
+  
+      // Hvis ingenting over stemmer, så går den automatisk ned til det som er i else statement, som er da at du taper runden.
+    } else {
+      displayResults.innerHTML = 'You lose!';
+      losses++
+      cash -= cost *2
+      displayLosses.innerHTML = 'losses is:' + losses
+      displayCash.innerHTML = 'cash:' + cash
+  
+      if( cash <= 0){
+        displayCash.innerHTML = 'Game over motherfucker!!'
+      }
+  
+      displayCost.innerHTML = 'cost:' + cost
+      displayCash.innerHTML = 'cash:' + cash
+      displayLosses.innerHTML = 'losses is:' + losses
+      displayDraw.innerHTML = 'draw is:' + draws
+      displayWins.innerHTML = 'wins is:'+ wins
     }
-  }
+
+
+   },1000)
+
+  
+    
+  }, 1000);
+  
 }
 
 // Da var du ferdig!
